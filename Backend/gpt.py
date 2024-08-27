@@ -92,7 +92,28 @@ def generate_script(video_subject: str, paragraph_number: int, ai_model: str, vo
     # Build prompt
     
     if customPrompt:
-        prompt = customPrompt
+        prompt = f"""
+            Generate a script for a video, depending on the subject of the video.
+
+            {customPrompt}
+
+            The script is to be returned as a string with the specified number of paragraphs.
+
+            Here is an example of a string:
+            "This is an example string."
+
+            Do not under any circumstance reference this prompt in your response.
+
+            Get straight to the point, don't start with unnecessary things like, "welcome to this video".
+
+            Obviously, the script should be related to the subject of the video.
+
+            YOU MUST NOT INCLUDE ANY TYPE OF MARKDOWN OR FORMATTING IN THE SCRIPT, NEVER USE A TITLE.
+            YOU MUST WRITE THE SCRIPT IN THE LANGUAGE SPECIFIED IN [LANGUAGE].
+            ONLY RETURN THE RAW CONTENT OF THE SCRIPT. DO NOT INCLUDE "VOICEOVER", "NARRATOR" OR SIMILAR INDICATORS OF WHAT SHOULD BE SPOKEN AT THE BEGINNING OF EACH PARAGRAPH OR LINE. YOU MUST NOT MENTION THE PROMPT, OR ANYTHING ABOUT THE SCRIPT ITSELF. ALSO, NEVER TALK ABOUT THE AMOUNT OF PARAGRAPHS OR LINES. JUST WRITE THE SCRIPT.
+
+        """
+        
     else:
         prompt = """
             Generate a script for a video, depending on the subject of the video.
